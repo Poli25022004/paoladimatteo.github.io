@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paola Di Matteo — Cybersecurity Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #050B14;
+      font-family: 'Syne', sans-serif;
+      color: #E2E8F0;
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #0A0F1A;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      border: 1px solid #1A2640;
+    }
+
+    /* Terminal intro */
+    .terminal {
+      margin-bottom: 1.5rem;
+    }
+    .tline {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      color: #1E4D7A;
+      margin-bottom: 3px;
+    }
+    .tline span { color: #38BDF8; }
+
+    /* Hero */
+    .hero {
+      border: 1px solid #1E2D45;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      background: #0D1526;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 1.1rem;
+      align-items: start;
+    }
+    .avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 10px;
+      background: #0A1628;
+      border: 1px solid #1E3A5F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Geist Mono', monospace;
+      font-size: 15px;
+      font-weight: 500;
+      color: #38BDF8;
+      flex-shrink: 0;
+      letter-spacing: 2px;
+    }
+    .hero-name {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #F1F5F9;
+      line-height: 1.1;
+    }
+    .hero-title {
+      font-size: 11px;
+      font-family: 'Geist Mono', monospace;
+      color: #38BDF8;
+      background: #0A2744;
+      border: 1px solid #1E4D7A;
+      padding: 3px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 7px;
+      letter-spacing: 0.06em;
+    }
+    .hero-sub {
+      font-size: 11px;
+      color: #64748B;
+      margin-top: 5px;
+      font-family: 'Geist Mono', monospace;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 12px;
+    }
+    .chip {
+      font-size: 10px;
+      font-family: 'Geist Mono', monospace;
+      padding: 3px 9px;
+      border-radius: 4px;
+      border: 1px solid #1E2D45;
+      color: #94A3B8;
+      background: #111827;
+      text-decoration: none;
+    }
+    .chip.on {
+      background: #052e16;
+      border-color: #166534;
+      color: #4ADE80;
+    }
+    .divider {
+      height: 1px;
+      background: #1E2D45;
+      margin: 1.1rem 0;
+    }
+    .hero-bio {
+      font-size: 13px;
+      color: #64748B;
+      line-height: 1.75;
+      font-style: italic;
+    }
+
+    /* Section label */
+    .sl {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #1E4D7A;
+      margin-bottom: 8px;
+      margin-top: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sl::before { content: '//'; color: #0EA5E9; font-size: 10px; }
+    .sl::after { content: ''; flex: 1; height: 1px; background: #1E2D45; }
+
+    /* Education */
+    .edu-item {
+      display: flex;
+      gap: 12px;
+      padding: 11px 14px;
+      background: #0D1526;
+      border: 1px solid #1E2D45;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      align-items: flex-start;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .dot-a { background: #4ADE80; box-shadow: 0 0 0 3px #052e16; }
+    .dot-b { background: #0EA5E9; }
+    .edu-name { font-size: 13px; font-weight: 600; color: #E2E8F0; }
+    .edu-sub { font-size: 11px; color: #475569; margin-top: 2px; font-family: 'Geist Mono', monospace; }
+    .etag {
+      font-size: 10px;
+      font-family: 'Geist Mono', monospace;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+    .etag-a { background: #052e16; color: #4ADE80; border: 1px solid #166534; }
+    .etag-b { background: #0A2744; color: #38BDF8; border: 1px solid #1E4D7A; }
+
+    /* Skills */
+    .sk-cat {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #1E4D7A;
+      margin-top: 12px;
+      margin-bottom: 5px;
+    }
+    .sk-cat:first-child { margin-top: 0; }
+    .sk-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    .sk {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      background: #0D1526;
+      border: 1px solid #1A2640;
+      border-radius: 8px;
+    }
+    .sk-mono {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      flex: 1;
+      color: #94A3B8;
+    }
+    .bar-bg { width: 60px; height: 2px; background: #1E2D45; border-radius: 2px; flex-shrink: 0; }
+    .bar { height: 100%; border-radius: 2px; }
+    .bar-r { background: #EF4444; }
+    .bar-b { background: #0EA5E9; }
+    .bar-p { background: #A78BFA; }
+    .bar-g { background: #4ADE80; }
+
+    /* Projects */
+    .proj-featured {
+      border: 1px solid #1E3A5F;
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 8px;
+      background: #0D1526;
+      position: relative;
+    }
+    .proj-featured::before {
+      content: 'FEATURED';
+      position: absolute;
+      top: -1px;
+      left: 1rem;
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      color: #38BDF8;
+      background: #0A2744;
+      padding: 2px 8px;
+      border-radius: 0 0 4px 4px;
+      border: 1px solid #1E4D7A;
+      border-top: none;
+    }
+    .proj-card {
+      border: 1px solid #1A2640;
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 8px;
+      background: #0D1526;
+    }
+    .proj-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 9px;
+    }
+    .ptag {
+      font-size: 10px;
+      font-family: 'Geist Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .ptag-v { background: #0A2744; color: #38BDF8; border: 1px solid #1E4D7A; }
+    .ptag-s { background: #1C0A0A; color: #EF4444; border: 1px solid #7F1D1D; }
+    .ptag-e { background: #150A2A; color: #A78BFA; border: 1px solid #4C1D95; }
+    .pstat {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: #4ADE80;
+      background: #052e16;
+      border: 1px solid #166534;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .proj-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #F1F5F9; }
+    .proj-desc { font-size: 12px; color: #64748B; line-height: 1.75; margin-bottom: 10px; }
+    .proj-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tech {
+      font-size: 10px;
+      font-family: 'Geist Mono', monospace;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: #111827;
+      color: #475569;
+      border: 1px solid #1E2D45;
+    }
+    .metric-num {
+      font-family: 'Geist Mono', monospace;
+      font-size: 24px;
+      font-weight: 500;
+      color: #38BDF8;
+      line-height: 1;
+      text-align: right;
+    }
+    .metric-label { font-size: 10px; color: #475569; margin-top: 2px; text-align: right; }
+
+    /* Certs */
+    .cert-summary { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .csn {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      padding: 8px 14px;
+      background: #0D1526;
+      border: 1px solid #1A2640;
+      border-radius: 8px;
+    }
+    .csn strong {
+      font-family: 'Geist Mono', monospace;
+      font-size: 20px;
+      font-weight: 500;
+      color: #E2E8F0;
+    }
+    .csn span { font-size: 11px; color: #475569; }
+    .cg-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #1E4D7A;
+      margin: 10px 0 5px;
+      padding-left: 2px;
+    }
+    .cert-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 11px;
+      background: #0D1526;
+      border: 1px solid #1A2640;
+      border-radius: 8px;
+      margin-bottom: 4px;
+    }
+    .cicon {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      flex-shrink: 0;
+      font-family: 'Geist Mono', monospace;
+      font-weight: 500;
+    }
+    .ci-ai { background: #150A2A; color: #A78BFA; }
+    .ci-sec { background: #1C0A0A; color: #EF4444; }
+    .ci-ot { background: #052e16; color: #4ADE80; }
+    .cert-info { flex: 1; min-width: 0; }
+    .cert-name { font-size: 12px; font-weight: 500; color: #CBD5E1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cert-issuer { font-size: 10px; color: #334155; font-family: 'Geist Mono', monospace; margin-top: 1px; }
+    .cert-year { font-family: 'Geist Mono', monospace; font-size: 10px; color: #334155; flex-shrink: 0; }
+    .cbadge { font-size: 9px; font-family: 'Geist Mono', monospace; padding: 2px 6px; border-radius: 3px; flex-shrink: 0; }
+    .cb-ai { background: #150A2A; color: #A78BFA; border: 1px solid #4C1D95; }
+    .cb-sec { background: #1C0A0A; color: #EF4444; border: 1px solid #7F1D1D; }
+
+    /* Lang */
+    .lang-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 13px;
+      background: #0D1526;
+      border: 1px solid #1A2640;
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+    .lang-name { font-size: 13px; font-weight: 600; width: 60px; font-family: 'Geist Mono', monospace; color: #94A3B8; }
+    .lang-level {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      color: #38BDF8;
+      background: #0A2744;
+      border: 1px solid #1E4D7A;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .lang-desc { font-size: 11px; color: #475569; flex: 1; }
+
+    /* Footer */
+    .footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1E2D45;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-text { font-family: 'Geist Mono', monospace; font-size: 10px; color: #1E4D7A; }
+    .footer-text span { color: #38BDF8; }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.5rem 1rem; }
+      .sk-grid { grid-template-columns: 1fr; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .avatar { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="terminal">
+    <div class="tline">$ <span>whoami</span></div>
+    <div class="tline">$ <span>cat portfolio.json</span></div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grid">
+      <div class="avatar">PD</div>
+      <div>
+        <div class="hero-name">Paola Di Matteo</div>
+        <div class="hero-title">Cybersecurity Analyst</div>
+        <div class="hero-sub">ITS Academy Lanciano · Abruzzo, Italia</div>
+        <div class="chips">
+          <span class="chip on">disponibile</span>
+          <a href="mailto:paoladimatteo123@gmail.com" class="chip">paoladimatteo123@gmail.com</a>
+          <a href="tel:+393661692323" class="chip">+39 366 169 2323</a>
+          <a href="https://www.linkedin.com/in/di-matteo-paola-8aa7a7358/" target="_blank" class="chip">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="hero-bio">"Appassionata di sicurezza informatica e intelligenza artificiale, con competenze in C/C++, visione artificiale e analisi delle vulnerabilità. Sempre motivata ad apprendere e crescere in un settore in continua evoluzione."</div>
+  </div>
+
+  <!-- FORMAZIONE -->
+  <div class="sl">Formazione</div>
+  <div class="edu-item">
+    <div class="dot dot-a"></div>
+    <div>
+      <div class="edu-name">Cybersecurity Specialist</div>
+      <div class="edu-sub">ITS Academy Lanciano · nov 2024 – attuale</div>
+      <span class="etag etag-a">in corso · EQF 5</span>
+    </div>
+  </div>
+  <div class="edu-item">
+    <div class="dot dot-b"></div>
+    <div>
+      <div class="edu-name">Diploma Perito Informatico</div>
+      <div class="edu-sub">I.I.S. "Luigi Di Savoia" · Chieti · 2018–2023</div>
+      <span class="etag etag-b">completato · EQF 4</span>
+    </div>
+  </div>
+
+  <!-- COMPETENZE -->
+  <div class="sl">Competenze tecniche</div>
+
+  <div class="sk-cat">Linguaggi</div>
+  <div class="sk-grid">
+    <div class="sk"><span class="sk-mono">C</span><div class="bar-bg"><div class="bar bar-r" style="width:78%"></div></div></div>
+    <div class="sk"><span class="sk-mono">C++</span><div class="bar-bg"><div class="bar bar-r" style="width:72%"></div></div></div>
+    <div class="sk"><span class="sk-mono">Python</span><div class="bar-bg"><div class="bar bar-b" style="width:68%"></div></div></div>
+    <div class="sk"><span class="sk-mono">JavaScript</span><div class="bar-bg"><div class="bar bar-b" style="width:55%"></div></div></div>
+  </div>
+
+  <div class="sk-cat">Framework e librerie</div>
+  <div class="sk-grid">
+    <div class="sk"><span class="sk-mono">OpenCV</span><div class="bar-bg"><div class="bar bar-b" style="width:74%"></div></div></div>
+    <div class="sk"><span class="sk-mono">React</span><div class="bar-bg"><div class="bar bar-b" style="width:58%"></div></div></div>
+    <div class="sk"><span class="sk-mono">PyTorch</span><div class="bar-bg"><div class="bar bar-b" style="width:60%"></div></div></div>
+    <div class="sk"><span class="sk-mono">Elastic Stack</span><div class="bar-bg"><div class="bar bar-b" style="width:65%"></div></div></div>
+  </div>
+
+  <div class="sk-cat">Cybersecurity</div>
+  <div class="sk-grid">
+    <div class="sk"><span class="sk-mono">XSS / Web Sec</span><div class="bar-bg"><div class="bar bar-r" style="width:70%"></div></div></div>
+    <div class="sk"><span class="sk-mono">Auth / API Sec</span><div class="bar-bg"><div class="bar bar-r" style="width:68%"></div></div></div>
+    <div class="sk"><span class="sk-mono">SIEM / Log Analysis</span><div class="bar-bg"><div class="bar bar-r" style="width:65%"></div></div></div>
+    <div class="sk"><span class="sk-mono">Linux / CLI</span><div class="bar-bg"><div class="bar bar-r" style="width:72%"></div></div></div>
+  </div>
+
+  <div class="sk-cat">AI e altro</div>
+  <div class="sk-grid">
+    <div class="sk"><span class="sk-mono">Claude API</span><div class="bar-bg"><div class="bar bar-p" style="width:70%"></div></div></div>
+    <div class="sk"><span class="sk-mono">Reti TCP/IP</span><div class="bar-bg"><div class="bar bar-g" style="width:65%"></div></div></div>
+  </div>
+
+  <!-- PROGETTI -->
+  <div class="sl">Progetti</div>
+
+  <div class="proj-featured">
+    <div class="proj-header">
+      <span class="ptag ptag-v">Computer Vision · AI</span>
+      <span class="pstat">in sviluppo</span>
+    </div>
+    <div class="proj-title">Aquira — Industrial Vision System</div>
+    <div class="proj-desc">Sistema di quality control per la produzione industriale basato su visione artificiale. Rileva difetti superficiali in tempo reale sulla linea di produzione, con classificazione automatica tramite deep learning e reportistica integrata. Alta precisione anche in condizioni di illuminazione variabile.</div>
+    <div class="proj-row">
+      <div class="tech-stack">
+        <span class="tech">C++</span>
+        <span class="tech">OpenCV</span>
+        <span class="tech">PyTorch</span>
+        <span class="tech">YOLO</span>
+        <span class="tech">Industrial IoT</span>
+      </div>
+      <div>
+        <div class="metric-num">99.2%</div>
+        <div class="metric-label">accuratezza</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-header"><span class="ptag ptag-s">SIEM · Blue Team</span></div>
+    <div class="proj-title">SIEM con Elastic Stack</div>
+    <div class="proj-desc">Realizzazione da zero di un sistema SIEM per raccolta, correlazione e analisi di log di sicurezza. Pipeline di ingestione, dashboard Kibana e alerting automatico.</div>
+    <div class="tech-stack">
+      <span class="tech">Elasticsearch</span>
+      <span class="tech">Logstash</span>
+      <span class="tech">Kibana</span>
+      <span class="tech">Linux</span>
+    </div>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-header"><span class="ptag ptag-e">Erasmus+</span></div>
+    <div class="proj-title">Erasmus+ — "Using Mobile Apps in the Learning Process"</div>
+    <div class="proj-desc">Mobilità internazionale in Macedonia del Nord (TPM Debar, mar–apr 2022) e meeting finale a Chieti (giu 2022). Confronto europeo sul ruolo delle tecnologie mobili nell'educazione.</div>
+    <div class="tech-stack">
+      <span class="tech">ott 2021 – giu 2022</span>
+      <span class="tech">Certificato TPM</span>
+      <span class="tech">Meeting C5</span>
+    </div>
+  </div>
+
+  <!-- CERTIFICAZIONI -->
+  <div class="sl">Certificazioni</div>
+  <div class="cert-summary">
+    <div class="csn"><strong>11</strong><span>totali</span></div>
+    <div class="csn"><strong>5</strong><span>Anthropic · AI</span></div>
+    <div class="csn"><strong>4</strong><span>Security</span></div>
+  </div>
+
+  <div class="cg-label">Anthropic — AI</div>
+  <div class="cert-row">
+    <div class="cicon ci-ai">AI</div>
+    <div class="cert-info"><div class="cert-name">Building with the Claude API</div><div class="cert-issuer">Anthropic · ID: ua8m47ffbiap</div></div>
+    <span class="cbadge cb-ai">AI</span><span class="cert-year">apr 2026</span>
+  </div>
+  <div class="cert-row">
+    <div class="cicon ci-ai">AI</div>
+    <div class="cert-info"><div class="cert-name">AI Fluency: Framework &amp; Foundations</div><div class="cert-issuer">Anthropic · ID: sx4fm5pam7du</div></div>
+    <span class="cbadge cb-ai">AI</span><span class="cert-year">apr 2026</span>
+  </div>
+  <div class="cert-row">
+    <div class="cicon ci-ai">AI</div>
+    <div class="cert-info"><div class="cert-name">Introduction to Claude Cowork</div><div class="cert-issuer">Anthropic · ID: 4337ixuekfug</div></div>
+    <span class="cbadge cb-ai">AI</span><span class="cert-year">apr 2026</span>
+  </div>
+  <div class="cert-row">
+    <div class="cicon ci-ai">AI</div>
+    <div class="cert-info"><div class="cert-name">Claude 101</div><div class="cert-issuer">Anthropic</div></div>
+    <span class="cbadge cb-ai">AI</span><span class="cert-year">apr 2026</span>
+  </div>
+  <div class="cert-row">
+    <div class="cicon ci-ai">AI</div>
+    <div class="cert-info"><div class="cert-name">Claude Code in Action</div><div class="cert-issuer">Anthropic</div></div>
+    <span class="cbadge cb-ai">AI</span><span class="cert-year">apr 2026</span>
+  </div>
+
+  <div class="cg-label">Sicurezza informatica</div>
+  <div class="cert-row">
+    <div class="cicon ci-sec">SEC</div>
+    <div class="cert-info"><div class="cert-name">XSS Exploits and Defences</div><div class="cert-issuer">The Linux Foundation</div></div>
+    <span class="cbadge cb-sec">Security</span><span class="cert-year">apr 2026</span>
+  </div>
+  <div class="cert-row">
+    <div class="cicon ci-sec">SEC</div>
+    <div class="cert-info"><div class="cert-name">Authentication and Authorization for Web/API</div><div class="cert-issuer">The Linux Foundation</div></div>
+    <span class="cbadge cb-sec">Security</span><span class="cert-year">apr 2026</span>
+  </div>
+  <div class="cert-row">
+    <div class="cicon ci-sec">SEC</div>
+    <div class="cert-info"><div class="cert-name">Introduction to Cybersecurity</div><div class="cert-issuer">Cisco</div></div>
+    <span class="cbadge cb-sec">Security</span><span class="cert-year">mar 2025</span>
+  </div>
+  <div class="cert-row">
+    <div class="cicon ci-sec">SEC</div>
+    <div class="cert-info"><div class="cert-name">SIEM con Elastic Stack</div><div class="cert-issuer">Udemy</div></div>
+    <span class="cbadge cb-sec">Security</span><span class="cert-year">nov 2025</span>
+  </div>
+
+  <div class="cg-label">Altro</div>
+  <div class="cert-row">
+    <div class="cicon ci-ot">EN</div>
+    <div class="cert-info"><div class="cert-name">Pearson Edexcel — Inglese B1</div><div class="cert-issuer">Pearson · Londra</div></div>
+    <span class="cert-year">2019</span>
+  </div>
+  <div class="cert-row">
+    <div class="cicon ci-ot">HS</div>
+    <div class="cert-info"><div class="cert-name">Sicurezza sul lavoro — Videoterminalisti</div><div class="cert-issuer">SIA Servizi · 8 ore</div></div>
+    <span class="cert-year">2023</span>
+  </div>
+
+  <!-- LINGUE -->
+  <div class="sl">Lingue</div>
+  <div class="lang-row">
+    <span class="lang-name">Italiano</span>
+    <span class="lang-level">Madre</span>
+    <span class="lang-desc">Lingua madre</span>
+  </div>
+  <div class="lang-row">
+    <span class="lang-name">Inglese</span>
+    <span class="lang-level">B1</span>
+    <span class="lang-desc">Certificato Pearson Edexcel · Londra 2019</span>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-text">$ <span>Paola Di Matteo</span> · portfolio 2026</div>
+    <div class="footer-text"><span>Abruzzo, Italia</span> · disponibile</div>
+  </div>
+
+</div>
+</body>
+</html>
